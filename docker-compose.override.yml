@@ -1,0 +1,22 @@
+services:
+  app:
+    build:
+      context: .
+      target: dev
+    container_name: streamlit-dev
+    volumes:
+      - .:/workspace
+    env_file:
+      - .env
+    environment:
+      - PORT=8501
+    ports:
+      - "8502:8501"
+    command:
+      - streamlit
+      - run
+      - src/app.py
+      - --server.port=8501
+      - --server.address=0.0.0.0
+      - --browser.gatherUsageStats=false
+    restart: unless-stopped

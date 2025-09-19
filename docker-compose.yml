@@ -1,0 +1,15 @@
+services:
+  app:
+    build:
+      context: .
+      target: prod   # 本番用ステージを利用
+    container_name: streamlit-prod
+    volumes:
+      - .:/workspace
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    environment:
+      - PORT=8501
+    restart: always

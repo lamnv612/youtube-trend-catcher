@@ -1,0 +1,40 @@
+{
+  // コンテナの名前
+  "name": "Streamlit Dev Container",
+
+  // Docker Compose を使用
+  "dockerComposeFile": [
+    "../docker-compose.yml",
+    "../docker-compose.override.yml"
+  ],
+
+  // 使用するサービス（docker-compose.yml 内のサービス名）
+  "service": "app",
+
+  // VS Code のカスタマイズ
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "editor.formatOnSave": true
+      }
+    }
+  },
+
+  // コンテナ内で実行するユーザー
+  "remoteUser": "appuser",
+
+  // VS Code でフォワードするポート
+  "forwardPorts": [8501],
+
+  // ワークスペースマウント
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
+
+  // コンテナ作成後に実行するコマンド
+  "postCreateCommand": ""
+}
